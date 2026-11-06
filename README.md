@@ -6,7 +6,7 @@ Linux Server Baseline is an infrastructure project focused on setting up, securi
 
 ## Architecture
 
-The project uses an Ubuntu Server host named `web-01`.
+The project uses an Ubuntu Server host named `app-01`.
 
 The server is designed to provide:
 
