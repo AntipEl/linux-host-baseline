@@ -1,0 +1,40 @@
+# UFW Firewall Policy and Rules
+
+## 1. Purpose
+This document describes the UFW firewall policy and the active inbound rules on the `app-01` server.
+
+## 2. Firewall Policy
+Default UFW policy:
+    Incoming: `deny` — incoming connections are denied.
+    Outgoing: `allow` — outgoing connections are allowed.
+    Routed: `disabled` — routed traffic is disabled.
+
+## 3. Allowed Incoming Connections
+According to the current UFW configuration, the following incoming connections are allowed:
+
+To                         Action      From
+--                         ------      ----
+17222/tcp                  ALLOW IN    Anywhere
+80/tcp                     ALLOW IN    Anywhere
+443/tcp                    ALLOW IN    Anywhere
+17222/tcp (v6)             ALLOW IN    Anywhere (v6)
+80/tcp (v6)                ALLOW IN    Anywhere (v6)
+443/tcp (v6)               ALLOW IN    Anywhere (v6)
+
+The rules apply to both IPv4 and IPv6.
+
+## 4. Application Access
+The `demo-app` application listens on 127.0.0.1:8080.
+This port must not be exposed to external connections because Nginx handles incoming HTTP/HTTPS requests and forwards them to the application through an internal connection on the server.
+Therefore, no separate inbound UFW rule is required for port `8080`.
+
+## 5. Verification
+- Check the UFW status, default policies, and active rules:
+    sudo ufw status verbose
+- List the rules with their numbers:
+    sudo ufw status numbered
+
+
+**Note:** An allowed port in UFW does not guarantee that the corresponding network service is running. A process must also be listening on that port for connections to be accepted.
+
+Allowing port `443/tcp` does not by itself mean that HTTPS is configured. A running Nginx service and a valid TLS configuration are also required.

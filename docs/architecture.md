@@ -64,7 +64,7 @@ Logging                 Low
 The following incoming TCP ports are allowed from any source:
 
 Port        Purpose
-`22`        SSH
+`17222`        SSH
 `80`        HTTP
 `443`       HTTPS
 

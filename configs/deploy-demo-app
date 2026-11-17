@@ -1,0 +1,40 @@
+# Managing the demo-app Service via sudoers
+
+## 1. Purpose
+- The `deploy` user is allowed to manage only the `demo-app` service via systemd.
+- Commands are executed as `root` without a password prompt.
+
+## 2. Configuration
+File: `/etc/sudoers.d/deploy-demo-app`
+
+# Allow deploy to manage only the demo-app service
+deploy ALL=(root) NOPASSWD: /usr/bin/systemctl start demo-app, /usr/bin/systemctl stop demo-app, /usr/bin/systemctl restart demo-app, /usr/bin/systemctl status demo-app
+
+Allowed operations:
+- `start` — start the service.
+- `stop` — stop the service.
+- `restart` — restart the service.
+- `status` — view the service status.
+
+Other systemd operations and management of other services are not permitted.
+
+## 3. Configuration and Privilege Verification
+- Run as an administrator:
+Check the sudoers configuration syntax:
+    sudo visudo -c
+- List the commands allowed for the user:
+    sudo -l -U deploy
+
+## 4. Command Execution Verification
+- Switch to the `deploy` user:
+    su - deploy
+- Test the allowed operations:
+    sudo systemctl status demo-app
+    sudo systemctl restart demo-app
+- Test that management of another service is denied:
+    sudo systemctl restart ssh
+Expected result: sudo rejects the command because it is not included in the list of permitted commands.
+
+## 5. sudo Log Verification
+- View records of commands executed via sudo during the last 10 minutes:
+    sudo journalctl _COMM=sudo --since "10 minutes ago"

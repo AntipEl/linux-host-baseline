@@ -1,0 +1,33 @@
+# SSH Server Configuration
+
+## 1. Purpose
+This file documents the SSH settings relevant to secure server access.
+The main SSH server settings are defined in `/etc/ssh/sshd_config`.
+
+## 2. SSH Port
+The default SSH port `22` is changed to `17222`:
+    Port 17222
+Example connection:
+    ssh -p 17222 admin@<SERVER_IP>
+
+## 3. Authentication and Access Control
+
+The server uses public key authentication. Password and interactive authentication are disabled.
+    PermitRootLogin no
+    PubkeyAuthentication yes
+    PasswordAuthentication no
+    KbdInteractiveAuthentication no
+    AllowUsers admin deploy
+
+- `PermitRootLogin no` — disables direct root login.
+- `PubkeyAuthentication yes` — enables public key authentication.
+- `PasswordAuthentication no` — disables password authentication.
+- `KbdInteractiveAuthentication no` — disables keyboard-interactive authentication.
+- `AllowUsers admin deploy` — allows SSH access only for the specified users.
+
+## 4. Configuration Verification
+Check the SSH configuration syntax:
+    sudo sshd -t
+
+Display the effective SSH configuration parameters:
+    sudo sshd -T

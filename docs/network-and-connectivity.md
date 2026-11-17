@@ -41,8 +41,8 @@ Local address       Port        Process
 `127.0.0.54`        `53`        `systemd-resolved`
 `127.0.0.53%lo`     `53`        `systemd-resolved`
 `0.0.0.0`           `8080`      `python3`
-`0.0.0.0`           `22`        `sshd`
-`[::]`              `22`        `sshd`
+`0.0.0.0`           `17222`        `sshd`
+`[::]`              `17222`        `sshd`
 `0.0.0.0`           `80`        `nginx`
 `[::]`              `80`        `nginx`
 
@@ -63,7 +63,7 @@ Routed traffic          Disabled
 The following incoming TCP ports are allowed from any source:
 
 Port            Intended purpose        Firewall action
-`22/tcp`        SSH                     Allow
+`17222/tcp`        SSH                     Allow
 `80/tcp`        HTTP                    Allow
 `443/tcp`       HTTPS                   Allow
 

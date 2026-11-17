@@ -1,0 +1,5 @@
+# Local files
+*.log
+
+# Environment files
+.env

@@ -12,7 +12,7 @@ This document summarizes the checks performed in the `app-01` environment.
 
 ## Connectivity Results
 
-- SSH on port `22`: verified from the Windows host.
+- SSH on port `17222`: verified from the Windows host.
 - HTTP on port `80` through Nginx: verified from the Windows host.
 - Application on port `8080`: listening; remote connectivity not confirmed.
 - HTTPS on port `443`: UFW allows traffic, but an HTTPS listener and successful TLS connection have not been verified.

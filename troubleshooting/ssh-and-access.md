@@ -11,8 +11,8 @@ The procedures below describe how to identify the cause of a failure and apply a
 ## 2. SSH connection fails
 
 ### Symptom 
-    ssh -p 22 deploy@app-01
-    ssh: connect to host <SERVER_IP> port 22: Connection timed out 
+    ssh -p 17222 deploy@app-01
+    ssh: connect to host <SERVER_IP> port 17222: Connection timed out 
 
 ### Possible causes
 - Incorrect server IP address or SSH port.
@@ -33,7 +33,7 @@ The procedures below describe how to identify the cause of a failure and apply a
     sudo ss -tlnp
 
 4. From Windows, test TCP connectivity:
-    Test-NetConnection <SERVER_IP> -Port 22
+    Test-NetConnection <SERVER_IP> -Port 17222
 
 ### Interpretation and next action
 

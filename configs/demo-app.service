@@ -1,0 +1,44 @@
+# Unit file /etc/systemd/system/demo-app.service
+
+An example systemd unit file defining how the demo-app service is started and managed.
+
+## Unit file
+
+[Unit]
+Description=Demo app service
+Requires=mnt-data\x2ddemo.mount
+After=network.target mnt-data\x2ddemo.mount
+
+[Service]
+Type=simple
+User=appsvc
+Group=demo-app
+WorkingDirectory=/srv/demo-app/
+ExecStart=/srv/demo-app/demo_app.py
+EnvironmentFile=/etc/demo-app/app-01.env
+Restart=on-failure
+RestartSec=10
+MemoryMax=256M
+
+[Install]
+WantedBy=multi-user.target
+
+## Directive descriptions
+
+[Unit]
+- Description — short description of the service.
+- Requires — defines a dependency on the mount unit for /mnt/data-demo. When starting demo-app.service, systemd also attempts to start the mount unit. If the mount unit fails to start, the application service will not start.
+- After — defines the startup order. The network target and mount unit are ordered before the application service. This directive does not start these units by itself.
+
+[Service]
+Type=simple — the service is considered started when the main process is launched.
+User and Group — specify the user and primary group under which the application process runs.
+WorkingDirectory — sets the working directory for the application process.
+ExecStart — specifies the command used to start the application.
+EnvironmentFile — specifies the file from which systemd loads environment variables.
+Restart=on-failure — configures automatic service restart when the process exits with a failure, is terminated by a signal, or encounters a timeout.
+RestartSec=10 — sets a 10-second delay before restarting the service.
+MemoryMax=256M — sets the maximum memory limit for the service.
+
+[Install]
+WantedBy=multi-user.target — specifies the target that pulls in the service when it is enabled. This allows the service to start automatically during normal system startup.
