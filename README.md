@@ -88,7 +88,7 @@ Actual test results and known limitations are documented separately from expecte
 - [Network and Connectivity](docs/network-and-connectivity.md)
 - [Service Operations](docs/service-operations.md)
 - [Verification](docs/verification.md)
-- [Access and SSH Troubleshooting](troubleshooting/access-and-ssh.md)
+- [Access and SSH Troubleshooting](troubleshooting/ssh-and-access.md)
 - [Service Failure Troubleshooting](troubleshooting/service-failures.md)
 - [Storage and Mount Recovery](troubleshooting/storage-and-mounts.md)
 - [Network and HTTP Troubleshooting](troubleshooting/network-and-http.md)
